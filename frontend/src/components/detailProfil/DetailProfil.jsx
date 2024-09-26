@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./DetailProfil.css";
 import heightIcon from '../../assets/icon/iconGrandeur.png';
@@ -7,20 +7,56 @@ import animalIcon from '../../assets/icon/iconAnimaux.png';
 import sportIcon from '../../assets/icon/iconSport.png';
 import hobbyIcon from '../../assets/icon/iconHobby.png';
 import loginData from '../../data/LoginData';
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const iconMapping = {
-  Height: heightIcon,
-  Sign: astrologieIcon,
-  FavAnimal: animalIcon,
-  Sport: sportIcon,
-  Hobby: hobbyIcon
+  height: heightIcon,
+  sign: astrologieIcon,
+  fav_animal: animalIcon,
+  sport: sportIcon,
+  hobby: hobbyIcon
 };
 
 const DetailProfil = ({ profil, onDelete }) => {
   const [showDeleteButton, setShowDeleteButton] = useState(true);
-  const profileToDisplay = loginData[0];
+  const [profileToDisplay, setProfileToDisplay] = useState(null);
+  const { user: loggedInUser } = useAuthContext();
 
-  if (!profil) {
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (!loggedInUser) {
+        console.error("No logged-in user found");
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}users/${loggedInUser._id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${loggedInUser.token}`,
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setProfileToDisplay(data);
+        } else {
+          console.error(data.error);
+        }
+      } catch (error) {
+        console.error("Failed to fetch user profile:", error);
+      }
+    };
+
+    fetchUserProfile();
+  }, [loggedInUser]);
+
+  if (!profileToDisplay) {
     return <p>Profile information is not available.</p>;
   }
 
@@ -74,7 +110,6 @@ const DetailProfil = ({ profil, onDelete }) => {
               className="JBB-detailprofil-supprimer"
               onClick={handleDelete}
             >
-              Supprimer
             </button>
           )}
         </div>
@@ -83,19 +118,19 @@ const DetailProfil = ({ profil, onDelete }) => {
   );
 };
 
-DetailProfil.propTypes = {
-  profil: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    photo_de_profil: PropTypes.string,
-    prenom: PropTypes.string.isRequired,
-    age: PropTypes.string,
-    metier: PropTypes.string,
-    grandeur: PropTypes.string,
-    description: PropTypes.string,
-    bubble: PropTypes.objectOf(PropTypes.string),
-    phone: PropTypes.string,
-  }),
-  onDelete: PropTypes.func,
-};
+// DetailProfil.propTypes = {
+//   profil: PropTypes.shape({
+//     id: PropTypes.number.isRequired,
+//     photo_de_profil: PropTypes.string,
+//     prenom: PropTypes.string.isRequired,
+//     age: PropTypes.string,
+//     metier: PropTypes.string,
+//     grandeur: PropTypes.string,
+//     phone: PropTypes.string,
+//     bubble: PropTypes.objectOf(PropTypes.string),
+//     phone: PropTypes.string,
+//   }),
+//   onDelete: PropTypes.func,
+// };
 
 export default DetailProfil;

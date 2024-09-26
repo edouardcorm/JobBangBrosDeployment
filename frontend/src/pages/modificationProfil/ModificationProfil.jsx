@@ -14,13 +14,13 @@ const ModificationProfil = () => {
   const [name, setName] = useState(user.name);
   const [age, setAge] = useState("");
   const [job, setJob] = useState("");
+  const [phone, setPhone] = useState("");
   const [height, setHeight] = useState("");
   const [sign, setSign] = useState("");
-  const [favAnimal, setFavAnimal] = useState("");
+  const [fav_animal, setFavAnimal] = useState("");
   const [sport, setSport] = useState("");
   const [hobby, setHobby] = useState("");
   const [orientation, setOrientation] = useState("");
-  const [phone, setPhone] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
   const [preference, setPreference] = useState("");
   const [error, setError] = useState(null);
@@ -38,11 +38,14 @@ const ModificationProfil = () => {
       name,
       age,
       job,
+      phone,
+      tags: {
       height,
       sign,
-      favAnimal,
+      fav_animal,
       sport,
       hobby,
+      },
       orientation,
       profilePicture,
       preference,
@@ -78,14 +81,17 @@ const ModificationProfil = () => {
         </div>
         <div className="JBB-modificationprofil-page">
           <PhotoProfil />
-          <ProfilDefinition />
+          <div className="JBB-modificationprofil-ProfilDefinition">
+            <Age age={age} setAge={setAge}/>
+            <PhoneNumber phone={phone} setPhone={setPhone}/>
+          </div>
         </div>
         <div className="JBB-modificationprofil-info">
           <h1 className="JBB-modificationprofil-textTitre">Vous informations rapides</h1>
           <h4 className="JBB-modificationprofil-textTitre">- Elles apparaîtront directement sur votre profil -</h4>
           <InputGrandeur tag1={height} setTag1={setHeight} />
           <InputSign tag2={sign} setTag2={setSign} />
-          <InputFavAnimal tag3={favAnimal} setTag3={setFavAnimal} />
+          <InputFavAnimal tag3={fav_animal} setTag3={setFavAnimal} />
           <InputSport tag4={sport} setTag4={setSport} />
           <InputHobby tag5={hobby} setTag5={setHobby} />
           <InputPhone phone={phone} setPhone={setPhone} />
@@ -149,11 +155,39 @@ const PhotoProfil = () => {
 
 const ProfilDefinition = () => {
   return (
-    <div className="JBB-modificationprofil-ProfilDefinition">
+    <div >
       <h4>Quelle est votre </h4>
       <input
         type="text"
         placeholder="Type here..."
+      />
+    </div>
+  );
+};
+
+const PhoneNumber = ({ phone, setPhone }) => {
+  return (
+    <div >
+      {/* <h4>Quelle est votre numémro de téléphone</h4> */}
+      <input
+      value={phone}
+      onChange={(e) => setPhone(e.target.value)}
+        type="text"
+        placeholder="Type here..."
+      />
+    </div>
+  );
+};
+
+const Age = ({ age, setAge }) => {
+  return (
+    <div className="JBB-modificationprofil-ProfilDefinition">
+      <h4>Quelle est votre </h4>
+      <input
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+        type="text"
+        placeholder="Type here...."
       />
     </div>
   );

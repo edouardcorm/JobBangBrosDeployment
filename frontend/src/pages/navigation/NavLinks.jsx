@@ -38,6 +38,12 @@ const NavLinks = ({ drawerIsOpen }) => {
           {drawerIsOpen && "ㆍModification"}
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/profil">
+          <img src={LogoProfil} alt="Profil" />
+          {drawerIsOpen && "ㆍProfil"}
+        </NavLink>
+      </li>
       <li className="JBB-NavLinks-bottom">
         <NavLink to="/" onClick={handleDeconnexion}>
           <img src={LogoDeconnexion} alt="Déconnexion" />

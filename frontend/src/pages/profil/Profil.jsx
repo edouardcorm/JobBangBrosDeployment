@@ -10,11 +10,11 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 const iconMapping = {
-  Height: heightIcon,
-  Sign: astrologieIcon,
-  FavAnimal: animalIcon,
-  Sport: sportIcon,
-  Hobby: hobbyIcon,
+  height: heightIcon,
+  sign: astrologieIcon,
+  fav_animal: animalIcon,
+  sport: sportIcon,
+  hobby: hobbyIcon,
 };
 
 const Profil = () => {
@@ -76,44 +76,34 @@ const Profil = () => {
           </div>
         </div>
         <div className="JBB-profil-infoProfil">
-          <div className="JBB-profil-bubbles">
-            {profileToDisplay.bubble &&
-              Object.entries(profileToDisplay.bubble)
-                .filter(([key, value]) => value)
-                .map(([key, popup], index) => {
-                  const iconPopup = iconMapping[key];
+        <div className="JBB-detailprofil-bubbles">
+  {profileToDisplay.tags && Object.entries(profileToDisplay.tags)
+    .filter(([key, value]) => value)
+    .map(([key, popup], index) => {
+      const iconPopup = iconMapping[key];
 
-                  const displayValue =
-                    key === "Height"
-                      ? popup
-                          .split(" ")
-                          .map((part, idx) =>
-                            idx === 0 ? `${part}'` : `${part}"`
-                          )
-                          .join("")
-                      : popup;
+      // Format height properly if key is 'Height'
+      const displayValue = key === 'Height'
+        ? popup.split(' ').map((part, idx) => idx === 0 ? `${part}'` : `${part}"`).join('')
+        : popup;
 
-                  return (
-                    <div className="JBB-profil-popup" key={index}>
-                      <img
-                        className="JBB-profil-logopopup"
-                        src={iconPopup}
-                        alt="Logo PopUp"
-                      />
-                      <p className="JBB-profil-infopopup">{displayValue}</p>
-                    </div>
-                  );
-                })}
-          </div>
+      return (
+        <div className="JBB-detailprofil-popup" key={index}>
+          <img className="JBB-detailprofil-logopopup" src={iconPopup} alt="Logo PopUp" />
+          <p className="JBB-detailprofil-infopopup">{displayValue}</p>
+        </div>
+      );
+    })}
+</div>
           Téléphone :
           {profileToDisplay.phone
             ? `(${profileToDisplay.phone.slice(
-                0,
-                3
-              )})-${profileToDisplay.phone.slice(
-                3,
-                6
-              )}-${profileToDisplay.phone.slice(6)}`
+              0,
+              3
+            )})-${profileToDisplay.phone.slice(
+              3,
+              6
+            )}-${profileToDisplay.phone.slice(6)}`
             : ""}
         </div>
       </div>
