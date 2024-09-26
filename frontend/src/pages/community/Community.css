@@ -1,0 +1,10 @@
+.JBB-community-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;   
+  flex-wrap: wrap;
+}
+
+.JBB-community-profil {
+  margin: 2.5% 1.5% 2.5% 1.5%;
+}

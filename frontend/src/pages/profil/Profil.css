@@ -1,0 +1,91 @@
+.JBB-profil-body {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  height: 100vh;         
+  width: 100vw;   
+  background-color: blue;        
+}
+
+.JBB-profil-container {
+  border: rgb(255, 230, 0), 2px solid;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 98%;
+  width: 32%;
+  border-radius: 17px;
+}
+
+.JBB-profil-photoAffichage {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 75%;
+  width: 100%;
+  display: flex;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: grey;
+}
+
+.JBB-profil-nomMetier {
+  position: absolute; 
+  bottom: 0; 
+  flex-direction: column; 
+  padding: 2%; 
+  width: 96%;
+  background: linear-gradient(to top, rgba(51, 51, 51, 1), rgba(255, 255, 255, 0));
+
+}
+
+.JBB-profil-nom {
+  margin: auto;
+  font-size: 40px;
+  color: white;
+}
+
+.JBB-profil-metier {
+  margin: auto;
+  font-size: 30px;
+  color: white;
+}
+
+.JBB-profil-infoProfil {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  height: 25%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 0, 0.7);
+}
+
+.JBB-profil-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+.JBB-profil-popup {
+  background-color: blue;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 15px;
+  margin: 5px 5px 5px 5px;
+  display: flex;
+  align-items: center; 
+}
+
+.JBB-profil-infopopup {
+  font-size: 25px;
+  margin: 0 0 0 ;
+}
+
+.JBB-profil-logopopup {
+  height: 25px;
+  width: 25px;
+  padding-right: 5px;
+}

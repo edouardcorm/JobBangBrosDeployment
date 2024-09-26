@@ -1,0 +1,40 @@
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.nav-links a img {
+  width: 25px;
+  height: 25px;
+}
+
+.nav-links a:hover {
+  background-color: rgb(0, 0, 111);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor: hand;
+}
+
+.CL-navigation-Data {
+  align-self: flex-end;
+}
+
+.JBB-NavLinks-bottom {
+  position: absolute;
+  bottom: 20px;
+  margin-bottom: 20px;
+}
