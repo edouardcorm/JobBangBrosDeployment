@@ -9,7 +9,12 @@ const app = express();
  
 // middleware
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+    origin: 'https://jobbangbrosdeployment-frontend.onrender.com', // Remplace par l'URL exacte de ton frontend
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use((req, res, next) => {
     console.log(req.path, req.method);
     console.log(req.body);
