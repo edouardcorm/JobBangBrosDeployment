@@ -60,12 +60,30 @@ const DetailProfil = ({ profil, onDelete }) => {
     return <p>Profile information is not available.</p>;
   }
 
-  const handleDelete = () => {
-    if (onDelete && profil.id) {
-      onDelete(profil.id); // Call the delete handler passed from parent
-      setShowDeleteButton(false); // Hide the delete button after deletion
+  const handleDelete = async () => {
+    if (profil._id && loggedInUser) {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}users/${profil._id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${loggedInUser.token}`, // Ajoute le token d'authentification
+          },
+        });
+  
+        if (response.ok) {
+          console.log('Utilisateur supprimé avec succès');
+          onDelete(profil._id); // Appelle le callback pour mettre à jour la liste
+          setShowDeleteButton(false); // Cache le bouton après suppression
+        } else {
+          console.error('Erreur lors de la suppression de l\'utilisateur');
+        }
+      } catch (error) {
+        console.error('Erreur lors de la suppression:', error);
+      }
     }
   };
+  
 
   return (
     <div className="JBB-detailprofil-container">
