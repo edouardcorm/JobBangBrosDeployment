@@ -47,7 +47,8 @@ const userSchema = new Schema({
 
         type: String,
         default: "Aucune",
-       // required: true,
+       // 
+       required: true,
     },
     
     profile_picture: {

@@ -82,7 +82,7 @@ const ModificationProfil = () => {
         <div className="JBB-modificationprofil-page">
           <PhotoProfil />
           <div className="JBB-modificationprofil-ProfilDefinition">
-            <Age age={age} setAge={setAge}/>
+            {/* <Age age={age} setAge={setAge}/> */}
             <PhoneNumber phone={phone} setPhone={setPhone}/>
           </div>
         </div>
