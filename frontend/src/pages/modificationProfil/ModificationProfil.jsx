@@ -168,7 +168,7 @@ const ProfilDefinition = () => {
 const PhoneNumber = ({ phone, setPhone }) => {
   return (
     <div >
-      {/* <h4>Quelle est votre numémro de téléphone</h4> */}
+      <h4>Quelle est votre numémro de téléphone</h4>
       <input
       value={phone}
       onChange={(e) => setPhone(e.target.value)}

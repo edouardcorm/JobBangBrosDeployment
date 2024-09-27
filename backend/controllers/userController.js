@@ -90,7 +90,7 @@ const getUserbyId = async (req, res) => {
 // Mettre à jour un utilisateur
 const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { name, email, password, profile_pictures, description, job, tags, age, preference } = req.body;
+  const { name, email, password, profile_pictures, description, job, tags, age, preference, phone } = req.body;
 
   // Check if email is provided and is a valid email
   if (email && !validator.isEmail(email)) {
@@ -106,6 +106,7 @@ const updateUser = async (req, res) => {
   const updatedUser = { 
     name, 
     email, 
+    phone,
     password: hashedPassword, 
     profile_pictures, 
     description, 
