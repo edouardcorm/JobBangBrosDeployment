@@ -87,18 +87,17 @@ const DetailProfil = ({ profil, onDelete }) => {
 
   return (
     <div className="JBB-detailprofil-container">
-      <div
-        className="JBB-detailprofil-photoAffichage"
+      <div className="JBB-detailprofil-photoAffichage"
         style={{ backgroundImage: `url(${profil.photo_de_profil})` }}
       >
         <div className="JBB-detailprofil-nomMetier">
-          <p className="JBB-detailprofil-nom">{profil.prenom}, {profil.age}</p>
-          <p className="JBB-detailprofil-metier">{profil.metier}</p>
+          <p className="JBB-detailprofil-nom">{profil.name}, {profil.age}</p>
+          <p className="JBB-detailprofil-metier">{profil.job}</p>
         </div>
       </div>
       <div className="JBB-detailprofil-infoProfil">
         <div className="JBB-detailprofil-bubbles">
-          {profil.bubble && Object.entries(profil.bubble).filter(([key, value]) => value).map(([key, popup], index) => {
+          {profil.tags && Object.entries(profil.tags).filter(([key, value]) => value).map(([key, popup], index) => {
             const iconPopup = iconMapping[key];
 
             const displayValue = key === 'Height'
@@ -119,9 +118,6 @@ const DetailProfil = ({ profil, onDelete }) => {
             {profil.phone
               ? `(${profil.phone.slice(0, 3)})-${profil.phone.slice(3, 6)}-${profil.phone.slice(6)}`
               : ''}
-          </p>
-          <p className="JBB-detailProfil-name">
-            Nom : {profil.name}
           </p>
           {showDeleteButton && profileToDisplay?.admin && (
             <button
