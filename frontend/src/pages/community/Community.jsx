@@ -26,22 +26,22 @@ const Community = () => {
         console.log("Fetched data:", data); // Log fetched data
 
         if (response.ok) {
-          // Filter users based on the logged-in user's preferences
-          console.log("Logged in user's preference:", loggedInUser.preference);
-          const filteredUsers = loggedInUser.admin
-            ? data // If the user is an admin, return all users
-            : data.filter(user => {
-              console.log("User gender:", user.gender); // Log each user's gender
-              return user.gender === loggedInUser.preference; // Filter based on preference if not an admin
-            });
-          console.log("Filtered users:", filteredUsers); // Log filtered users
+          // Display all users, no filtering
+          const filteredUsers = data;
+        
+          // Log all users
+          console.log("All users:", filteredUsers);
+        
+          // Set the profiles in the state
           setProfils(filteredUsers);
         } else {
           console.error(data.error);
         }
-      } catch (error) {
-        console.error("Failed to fetch users:", error);
-      }
+        
+        // Catch any errors that occur during the fetch
+        } catch (error) {
+          console.error("Failed to fetch users:", error);
+        }
     };
 
     if (loggedInUser) {
