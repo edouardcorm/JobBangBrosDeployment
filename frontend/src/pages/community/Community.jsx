@@ -28,10 +28,12 @@ const Community = () => {
         if (response.ok) {
           // Filter users based on the logged-in user's preferences
           console.log("Logged in user's preference:", loggedInUser.preference);
-          const filteredUsers = data.filter(user => {
-            console.log("User gender:", user.gender); // Log each user's gender
-            return user.gender === loggedInUser.preference;
-          });
+          const filteredUsers = loggedInUser.admin
+            ? data // If the user is an admin, return all users
+            : data.filter(user => {
+              console.log("User gender:", user.gender); // Log each user's gender
+              return user.gender === loggedInUser.preference; // Filter based on preference if not an admin
+            });
           console.log("Filtered users:", filteredUsers); // Log filtered users
           setProfils(filteredUsers);
         } else {
@@ -56,8 +58,8 @@ const Community = () => {
 
   const backgroundColor =
     loggedInUser.preference === 'male' ? 'rgba(255, 192, 203, 0.5)' :
-    loggedInUser.preference === 'female' ? 'rgba(0, 0, 255, 0.1)' :
-    'linear-gradient(to right, rgba(255, 192, 203, 0.5), rgba(173, 216, 230, 0.5))';
+      loggedInUser.preference === 'female' ? 'rgba(0, 0, 255, 0.1)' :
+        'linear-gradient(to right, rgba(255, 192, 203, 0.5), rgba(173, 216, 230, 0.5))';
 
   return (
     <div className="JBB-community-container" style={{ background: backgroundColor }}>

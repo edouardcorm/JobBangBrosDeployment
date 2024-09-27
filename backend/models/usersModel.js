@@ -46,6 +46,7 @@ const userSchema = new Schema({
     preference: {
 
         type: String,
+        default: "Aucune",
        // required: true,
     },
     
